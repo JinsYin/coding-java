@@ -6,7 +6,11 @@
 
     <groupId>com.github</groupId>
     <artifactId>coding</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.0</version>
 
+    <modules>
+        <module>apache-thrift</module>
+    </modules>
 
 </project>
