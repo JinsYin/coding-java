@@ -11,6 +11,7 @@
 
     <modules>
         <module>apache-thrift</module>
+        <module>javalin</module>
     </modules>
 
 </project>
