@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="javalin" />
+        <module name="maven-checkstyle-plugin" />
         <module name="apache-thrift" />
+        <module name="mybatis" />
       </profile>
     </annotationProcessing>
   </component>
