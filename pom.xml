@@ -14,6 +14,7 @@
         <module>javalin</module>
         <module>maven</module>
         <module>mybatis</module>
+        <module>kettle</module>
     </modules>
 
 </project>
