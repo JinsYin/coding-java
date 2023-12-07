@@ -6,12 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="javalin" />
-        <module name="apache-thrift" />
-        <module name="maven-checkstyle-plugin" />
-        <module name="apache-flink" />
-        <module name="mybatis" />
-        <module name="kettle" />
+        <module name="flink-frauddetection" />
       </profile>
     </annotationProcessing>
   </component>

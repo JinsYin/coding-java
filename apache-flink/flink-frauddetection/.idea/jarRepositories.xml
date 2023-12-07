@@ -7,9 +7,9 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="pentaho-public" />
-      <option name="name" value="Pentaho Public" />
-      <option name="url" value="https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn/" />
+      <option name="id" value="apache.snapshots" />
+      <option name="name" value="Apache Development Snapshot Repository" />
+      <option name="url" value="https://repository.apache.org/content/repositories/snapshots/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -20,16 +20,6 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="central" />
-      <option name="name" value="Central Repository" />
-      <option name="url" value="https://maven.aliyun.com/repository/central" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="pentaho-omni" />
-      <option name="name" value="Pentaho Omni" />
-      <option name="url" value="https://nexus.pentaho.org/content/groups/omni/" />
     </remote-repository>
   </component>
 </project>
