@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>apache-thrift</artifactId>
+    <name>Apache Thrift</name>
 
     <dependencies>
         <!-- 版本与 JDK 版本强相关 -->

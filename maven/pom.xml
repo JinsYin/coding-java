@@ -11,9 +11,11 @@
 
     <artifactId>maven</artifactId>
     <packaging>pom</packaging>
+
+    <name>Maven</name>
+
     <modules>
         <module>maven-checkstyle-plugin</module>
     </modules>
-
 
 </project>

@@ -9,6 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
+    <name>Coding</name>
+
     <modules>
         <module>apache-flink</module>
         <module>apache-thrift</module>
