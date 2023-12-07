@@ -10,6 +10,7 @@
     <version>1.0.0</version>
 
     <modules>
+        <module>apache-flink</module>
         <module>apache-thrift</module>
         <module>javalin</module>
         <module>maven</module>
