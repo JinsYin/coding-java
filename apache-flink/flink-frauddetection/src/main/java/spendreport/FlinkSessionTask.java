@@ -18,6 +18,7 @@
 
 package spendreport;
 
+import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -25,6 +26,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
 import org.apache.flink.streaming.api.functions.source.datagen.DataGenerator;
 import org.apache.flink.streaming.api.functions.source.datagen.DataGeneratorSource;
+import org.apache.flink.streaming.api.functions.source.datagen.RandomGenerator;
 import org.apache.flink.streaming.api.functions.source.datagen.SequenceGenerator;
 import org.apache.flink.streaming.api.graph.StreamGraph;
 import org.apache.flink.walkthrough.common.entity.Alert;
@@ -44,21 +46,15 @@ public class FlinkSessionTask {
 		Configuration config = new Configuration();
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
 
-		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 10000);
-		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(dataGenerator);
+		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 1000000);
+		DataGenerator<Integer> randGenerator = RandomGenerator.intGenerator(0, 1000);
+		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(randGenerator);
 
-		DataStream<Transaction> transactions = env
-				.addSource(new TransactionSource())
-				.name("transactions");
-
-		DataStream<Alert> alerts = transactions
-				.keyBy(Transaction::getAccountId)
-				.process(new FraudDetector())
-				.name("fraud-detector")
-				;
-
-		alerts.addSink(new PrintSinkFunction<>())
-				.name("send-alerts");
+		DataStream<Integer> dataGen = env
+				.addSource(dataGeneratorSource, TypeInformation.of(Integer.class))
+				.name("data-gen");
+		dataGen.addSink(new PrintSinkFunction<>())
+				.name("send-to-console");
 
 		executeByEnvironment(env, "Flink Session Task");
 	}
@@ -67,23 +63,22 @@ public class FlinkSessionTask {
 		Configuration config = new Configuration();
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
 
-		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 10000);
-		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(dataGenerator);
-
 		DataStream<Transaction> transactions = env
 				.addSource(new TransactionSource())
 				.name("transactions");
-
 		DataStream<Alert> alerts = transactions
 				.keyBy(Transaction::getAccountId)
 				.process(new FraudDetector())
 				.name("fraud-detector")
 				;
-
 		alerts.addSink(new PrintSinkFunction<>())
 				.name("send-alerts");
 
 		StreamGraph streamGraph = env.getStreamGraph();
+		System.out.println(streamGraph.getStreamingPlanAsJSON());
+		System.out.println("-------------------------");
+		System.out.println(streamGraph.getJobGraph());
+
 		executeByStreamGraph(streamGraph);
 	}
 
@@ -99,6 +94,7 @@ public class FlinkSessionTask {
 		config.setInteger(RestOptions.PORT.key(), 18081); // default: 8081
 		config.setInteger(RestOptions.BIND_PORT.key(), 18081); // default: 8081
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
+		// env.getExecutionPlan() / env.getStreamGraph(false).getStreamingPlanAsJSON() / streamGraph.getStreamingPlanAsJSON()
 		env.executeAsync(streamGraph);
 	}
 

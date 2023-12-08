@@ -119,3 +119,5 @@ replay_pid*
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml
 
 .idea/*
+dependency-reduced-pom.xml
+target/
