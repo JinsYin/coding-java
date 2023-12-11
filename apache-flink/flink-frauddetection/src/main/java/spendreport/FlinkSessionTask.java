@@ -44,6 +44,8 @@ public class FlinkSessionTask {
 
 	public static void executeExample1() throws Exception {
 		Configuration config = new Configuration();
+		config.setInteger(RestOptions.PORT.key(), 18081); // default: 8081
+		config.setInteger(RestOptions.BIND_PORT.key(), 18081); // default: 8081
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
 
 		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 1000000);
@@ -60,10 +62,9 @@ public class FlinkSessionTask {
 	}
 
 	public static void executeExample2() throws Exception {
-		Configuration config = new Configuration();
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
+		StreamExecutionEnvironment tmpEnv = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		DataStream<Transaction> transactions = env
+		DataStream<Transaction> transactions = tmpEnv
 				.addSource(new TransactionSource())
 				.name("transactions");
 		DataStream<Alert> alerts = transactions
@@ -74,7 +75,7 @@ public class FlinkSessionTask {
 		alerts.addSink(new PrintSinkFunction<>())
 				.name("send-alerts");
 
-		StreamGraph streamGraph = env.getStreamGraph();
+		StreamGraph streamGraph = tmpEnv.getStreamGraph();
 		System.out.println(streamGraph.getStreamingPlanAsJSON());
 		System.out.println("-------------------------");
 		System.out.println(streamGraph.getJobGraph());
