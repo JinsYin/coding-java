@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package spendreport;
+package com.github.flink;
 
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.configuration.Configuration;
@@ -39,18 +39,18 @@ import org.apache.flink.walkthrough.common.source.TransactionSource;
 public class FlinkSessionTask {
 
 	public static void main(String[] args) throws Exception {
-		executeExample2();
+		executeExample();
 	}
 
-	public static void executeExample1() throws Exception {
+	public static void executeExample() throws Exception {
 		Configuration config = new Configuration();
 		config.setInteger(RestOptions.PORT.key(), 18081); // default: 8081
 		config.setInteger(RestOptions.BIND_PORT.key(), 18081); // default: 8081
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
 
-		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 1000000);
-		DataGenerator<Integer> randGenerator = RandomGenerator.intGenerator(0, 1000);
-		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(randGenerator);
+		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 1000000); // in batch
+		DataGenerator<Integer> randGenerator = RandomGenerator.intGenerator(0, 1000); // in streaming
+		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(dataGenerator);
 
 		DataStream<Integer> dataGen = env
 				.addSource(dataGeneratorSource, TypeInformation.of(Integer.class))
@@ -59,28 +59,6 @@ public class FlinkSessionTask {
 				.name("send-to-console");
 
 		executeByEnvironment(env, "Flink Session Task");
-	}
-
-	public static void executeExample2() throws Exception {
-		StreamExecutionEnvironment tmpEnv = StreamExecutionEnvironment.getExecutionEnvironment();
-
-		DataStream<Transaction> transactions = tmpEnv
-				.addSource(new TransactionSource())
-				.name("transactions");
-		DataStream<Alert> alerts = transactions
-				.keyBy(Transaction::getAccountId)
-				.process(new FraudDetector())
-				.name("fraud-detector")
-				;
-		alerts.addSink(new PrintSinkFunction<>())
-				.name("send-alerts");
-
-		StreamGraph streamGraph = tmpEnv.getStreamGraph();
-		System.out.println(streamGraph.getStreamingPlanAsJSON());
-		System.out.println("-------------------------");
-		System.out.println(streamGraph.getJobGraph());
-
-		executeByStreamGraph(streamGraph);
 	}
 
 	// --------------------------------------------------
