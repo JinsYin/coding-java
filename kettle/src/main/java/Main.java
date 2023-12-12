@@ -6,7 +6,6 @@ import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entries.shell.JobEntryShell;
 import org.pentaho.di.job.entries.trans.JobEntryTrans;
 import org.pentaho.di.job.entry.JobEntryCopy;
-import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransHopMeta;
 import org.pentaho.di.trans.TransMeta;

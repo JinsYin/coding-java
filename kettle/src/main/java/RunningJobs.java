@@ -41,6 +41,8 @@ import org.pentaho.di.repository.RepositoryMeta;
  * This class demonstrates how to load and execute a PDI job. It covers loading
  * from both file system and repositories, as well as setting parameters prior
  * to execution, evaluating the job result, and retrieving the job's log lines.
+ *
+ * <p><a href="https://github.com/pentaho/pdi-sdk-plugins/blob/master/kettle-sdk-embedding-samples/src/main/java/org/pentaho/di/sdk/samples/embedding/RunningJobs.java">RunningJobs.java</a>
  */
 public class RunningJobs {
 

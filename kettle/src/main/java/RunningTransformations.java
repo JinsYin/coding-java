@@ -42,6 +42,8 @@ import org.pentaho.di.trans.TransMeta;
  * It covers loading from both file system and repositories, 
  * as well as setting parameters prior to execution, and evaluating
  * the result.
+ *
+ * <p><a href="https://github.com/pentaho/pdi-sdk-plugins/blob/master/kettle-sdk-embedding-samples/src/main/java/org/pentaho/di/sdk/samples/embedding/RunningTransformations.java">RunningTransformations.java</a>
  */
 public class RunningTransformations {
 
