@@ -20,7 +20,6 @@ package com.github.flink;
 
 import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -30,15 +29,11 @@ import org.apache.flink.streaming.api.functions.source.datagen.DataGenerator;
 import org.apache.flink.streaming.api.functions.source.datagen.DataGeneratorSource;
 import org.apache.flink.streaming.api.functions.source.datagen.RandomGenerator;
 import org.apache.flink.streaming.api.functions.source.datagen.SequenceGenerator;
-import org.apache.flink.streaming.api.graph.StreamGraph;
-import org.apache.flink.walkthrough.common.entity.Alert;
-import org.apache.flink.walkthrough.common.entity.Transaction;
-import org.apache.flink.walkthrough.common.source.TransactionSource;
 
 /**
  * Flink Session Task
  */
-public class FlinkSessionTask {
+public class FlinkJarTask {
 
 	public static void main(String[] args) throws Exception {
 		executeExample();
@@ -51,7 +46,7 @@ public class FlinkSessionTask {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
 		env.setRuntimeMode(RuntimeExecutionMode.AUTOMATIC);
 
-		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 1000000); // batch task
+		DataGenerator<Integer> dataGenerator = SequenceGenerator.intGenerator(0, 10000); // batch task
 		DataGenerator<Integer> randGenerator = RandomGenerator.intGenerator(0, 1000); // continuous task
 		DataGeneratorSource<Integer> dataGeneratorSource = new DataGeneratorSource<>(dataGenerator);
 
@@ -68,20 +63,5 @@ public class FlinkSessionTask {
 
 	public static void executeByEnvironment(StreamExecutionEnvironment env, String jobName) throws Exception {
 		env.executeAsync(jobName);
-	}
-
-	public static void executeByStreamGraph(StreamGraph streamGraph) throws Exception {
-		Configuration config = new Configuration();
-		// 要求引入 `org.apache.flink:flink-runtime-web` 包
-		config.setInteger(RestOptions.PORT.key(), 18081); // default: 8081
-		config.setInteger(RestOptions.BIND_PORT.key(), 18081); // default: 8081
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
-		// env.getExecutionPlan() / env.getStreamGraph(false).getStreamingPlanAsJSON() / streamGraph.getStreamingPlanAsJSON()
-		env.executeAsync(streamGraph);
-	}
-
-	public static void executeByStreamGraph(StreamGraph streamGraph, Configuration config) throws Exception {
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(config);
-		env.executeAsync(streamGraph);
 	}
 }

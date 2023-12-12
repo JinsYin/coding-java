@@ -15,6 +15,7 @@
 
     <modules>
         <module>flink-frauddetection</module>
+        <module>flink-application</module>
     </modules>
 
     <properties>
