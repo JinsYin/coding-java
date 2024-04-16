@@ -7,9 +7,6 @@
     <groupId>cn.guruguru.coding</groupId>
     <artifactId>coding-java</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>akka</module>
-    </modules>
     <version>1.0.0</version>
 
     <name>coding-java</name>
@@ -50,10 +47,13 @@
                 <maven.compiler.target>${java.version}</maven.compiler.target>
             </properties>
             <modules>
+                <module>akka</module>
                 <module>apache-flink</module>
+                <module>apache-maven</module>
+                <module>apache-pekko</module>
                 <module>apache-thrift</module>
-                <module>maven</module>
                 <module>mybatis</module>
+                <module>netty</module>
                 <module>kettle</module>
             </modules>
         </profile>

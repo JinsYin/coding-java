@@ -9,8 +9,8 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>akka</artifactId>
-    <name>Akka</name>
+    <artifactId>netty</artifactId>
+    <name>Netty</name>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -9,8 +9,8 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>akka</artifactId>
-    <name>Akka</name>
+    <artifactId>apache-pekko</artifactId>
+    <name>Apache Pekko</name>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
