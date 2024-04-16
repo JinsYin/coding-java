@@ -23,7 +23,7 @@ $ mvn clean package
 ## 本地运行
 
 ```bash
-# 方式一: 运行 Main Class（使用 LocalEnvironment 会启动一个本地 Web 服务，地址为 `localhost:18081`）
+# 方式一: 运行 cn.guruguru.coding.ketttle.Main Class（使用 LocalEnvironment 会启动一个本地 Web 服务，地址为 `localhost:18081`）
 $ java -jar target/flink-frauddetection-0.1.jar # in batch
 ```
 
