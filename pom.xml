@@ -7,6 +7,9 @@
     <groupId>cn.guruguru.coding</groupId>
     <artifactId>coding-java</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>akka</module>
+    </modules>
     <version>1.0.0</version>
 
     <name>coding-java</name>
