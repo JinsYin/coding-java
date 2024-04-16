@@ -11,13 +11,38 @@
 
     <name>Coding</name>
 
-    <modules>
-        <module>apache-flink</module>
-        <module>apache-thrift</module>
-        <module>javalin</module>
-        <module>maven</module>
-        <module>mybatis</module>
-        <module>kettle</module>
-    </modules>
+    <profiles>
+        <!-- Modules using java 1.8 -->
+        <profile>
+            <id>java8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target.java.version>1.8</target.java.version>
+                <maven.compiler.source>${target.java.version}</maven.compiler.source>
+                <maven.compiler.target>${target.java.version}</maven.compiler.target>
+            </properties>
+            <modules>
+                <module>apache-flink</module>
+                <module>apache-thrift</module>
+                <module>maven</module>
+                <module>mybatis</module>
+                <module>kettle</module>
+            </modules>
+        </profile>
+        <!-- Modules using java 11 -->
+        <profile>
+            <id>java11</id>
+            <properties>
+                <target.java.version>11</target.java.version>
+                <maven.compiler.source>${target.java.version}</maven.compiler.source>
+                <maven.compiler.target>${target.java.version}</maven.compiler.target>
+            </properties>
+            <modules>
+                <module>javalin</module>
+            </modules>
+        </profile>
+    </profiles>
 
 </project>
