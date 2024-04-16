@@ -1,3 +1,1 @@
-# Coding
-
-* [Apache Thrift](./apache-thrift/README.md)
+# Coding in Java
