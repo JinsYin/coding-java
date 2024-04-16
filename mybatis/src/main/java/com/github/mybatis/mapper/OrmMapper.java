@@ -6,9 +6,8 @@ package com.github.mybatis.mapper;
  * 1. 必须是复杂数据类型
  * 2. `Optional`
  */
-public class OrmMapper {
+public interface OrmMapper {
 
-    //
-    @Select("select count(1) from " + TABLE_NAME)
+    // @Select("select count(1) from " + TABLE_NAME)
     Integer getNumTables();
 }
