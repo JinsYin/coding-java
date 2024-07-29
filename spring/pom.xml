@@ -13,6 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>spring-cloud-eureka-producer</module>
+        <module>spring-cloud-eureka-consumer</module>
+        <module>spring-cloud-eureka-server</module>
         <module>spring-shell</module>
     </modules>
 
