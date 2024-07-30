@@ -28,7 +28,7 @@ public class Main {
         // 初始化 Kettle
         KettleEnvironment.init();
         // 创建 TransMeta 对象
-        String filename = ClassLoader.getSystemResource("trans1.ktr").getFile();
+        String filename = ClassLoader.getSystemResource("examples/trans1.ktr").getFile();
         TransMeta meta = new TransMeta(filename);
         // 创建 Trans 对象
         Trans trans = new Trans(meta);
