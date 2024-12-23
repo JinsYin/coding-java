@@ -38,9 +38,6 @@
         <!-- Modules using java 1.8 -->
         <profile>
             <id>java8</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <java.version>1.8</java.version>
                 <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -58,6 +55,7 @@
                 <module>spring</module>
             </modules>
         </profile>
+
         <!-- Modules using java 11 -->
         <profile>
             <id>java11</id>
@@ -68,6 +66,18 @@
             </properties>
             <modules>
                 <module>javalin</module>
+            </modules>
+        </profile>
+
+        <!-- Modules using java 17 -->
+        <profile>
+            <id>java17</id>
+            <properties>
+                <java.version>17</java.version>
+                <maven.compiler.source>${java.version}</maven.compiler.source>
+                <maven.compiler.target>${java.version}</maven.compiler.target>
+            </properties>
+            <modules>
             </modules>
         </profile>
     </profiles>
