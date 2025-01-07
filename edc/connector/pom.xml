@@ -22,6 +22,7 @@
 
     <modules>
         <module>basic-connector</module>
+        <module>config-connector</module>
         <module>health-endpoint</module>
     </modules>
 
@@ -42,6 +43,12 @@
             <dependency>
                 <groupId>org.eclipse.edc</groupId>
                 <artifactId>http</artifactId>
+                <version>${edc.version}</version>
+            </dependency>
+            <!-- 基于文件系统的配置 -->
+            <dependency>
+                <groupId>org.eclipse.edc</groupId>
+                <artifactId>configuration-filesystem</artifactId>
                 <version>${edc.version}</version>
             </dependency>
 

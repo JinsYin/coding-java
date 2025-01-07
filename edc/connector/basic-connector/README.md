@@ -1,4 +1,4 @@
-# EDC Basic Connector
+# basic-connector
 
 此示例构建和运行一个简单的连接器。
 
