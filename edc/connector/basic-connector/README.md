@@ -1,5 +1,7 @@
 # EDC Basic Connector
 
+此示例构建和运行一个简单的连接器。
+
 ## 要求
 
 * Java 17（开启 `-Pjava17`）

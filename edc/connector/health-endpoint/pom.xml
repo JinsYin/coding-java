@@ -10,10 +10,11 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>basic-connector</artifactId>
+    <artifactId>health-endpoint</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
+        <!-- EDC Connector -->
         <dependency>
             <groupId>org.eclipse.edc</groupId>
             <artifactId>boot</artifactId>
@@ -25,6 +26,12 @@
         <dependency>
             <groupId>org.eclipse.edc</groupId>
             <artifactId>http</artifactId>
+        </dependency>
+
+        <!-- Jakarta REST API -->
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
         </dependency>
     </dependencies>
 </project>

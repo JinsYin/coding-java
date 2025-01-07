@@ -17,15 +17,17 @@
 
     <properties>
         <edc.version>0.10.1</edc.version>
+        <jaxrs.version>4.0.0</jaxrs.version>
     </properties>
 
     <modules>
         <module>basic-connector</module>
+        <module>health-endpoint</module>
     </modules>
 
     <dependencyManagement>
-        <!-- EDC Connector -->
         <dependencies>
+            <!-- EDC Connector -->
             <dependency>
                 <groupId>org.eclipse.edc</groupId>
                 <artifactId>boot</artifactId>
@@ -36,12 +38,87 @@
                 <artifactId>connector-core</artifactId>
                 <version>${edc.version}</version>
             </dependency>
+            <!-- 包含 jersey 和 jetty -->
             <dependency>
                 <groupId>org.eclipse.edc</groupId>
                 <artifactId>http</artifactId>
                 <version>${edc.version}</version>
             </dependency>
+
+            <!-- Jakarta REST API -->
+            <dependency>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>${jaxrs.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- Exec Maven Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.eclipse.edc.boot.system.runtime.BaseRuntime</mainClass>
+                    <!-- 该插件默认使用引入的依赖作为运行时类路径，不会将当前模块的编译输出目录加入类路径 -->
+                    <!-- 故手动指定当前模块的编译输出路径以将其加入类路径，但必须先执行编译 -->
+                    <arguments>
+                        <argument>-cp</argument>
+                        <argument>${project.build.outputDirectory}:${project.build.testOutputDirectory}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Shade Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <!-- 设置主类 -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.eclipse.edc.boot.system.runtime.BaseRuntime</mainClass>
+                                </transformer>
+                                <!-- 合并 META-INF/services 下的 Service Provider 配置文件 -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <!-- 设置 JAR 文件名 -->
+                            <finalName>${project.artifactId}</finalName>
+                            <!-- 禁用创建减少依赖关系的 POM 文件 -->
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- 排除某些不需要的资源 -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
