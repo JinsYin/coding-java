@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-    <name>coding-java</name>
+    <name>CodingJava</name>
     <description>Coding in Java</description>
 
     <properties>
@@ -78,6 +78,7 @@
                 <maven.compiler.target>${java.version}</maven.compiler.target>
             </properties>
             <modules>
+                <module>edc</module>
             </modules>
         </profile>
     </profiles>
