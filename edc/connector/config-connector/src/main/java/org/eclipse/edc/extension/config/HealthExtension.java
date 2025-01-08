@@ -1,4 +1,4 @@
-package org.eclipse.edc.configuration;
+package org.eclipse.edc.extension.config;
 
 import org.eclipse.edc.runtime.metamodel.annotation.Inject;
 import org.eclipse.edc.spi.system.ServiceExtension;

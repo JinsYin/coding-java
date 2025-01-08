@@ -1,4 +1,4 @@
-package org.eclipse.edc.configuration;
+package org.eclipse.edc.extension.config;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
