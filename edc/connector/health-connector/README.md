@@ -1,4 +1,4 @@
-# EDC Health Endpoint
+# health-connector
 
 此示例通过自定义实现 Extension 来增加一个 HTTP GET 接口到连接器。
 
@@ -11,10 +11,10 @@
 
 ```bash
 # 先执行编译
-$ mvn clean compile -pl edc/connector/health-endpoint -Pjava17
+$ mvn clean compile -pl edc/connector/health-connector -Pjava17
 
 # 运行 BaseRuntime 主程序，如何运行正常，日志中会显示 Initialized、Prepared 和 Started `Health Service`（扩展名）
-$ mvn exec:java -pl edc/connector/health-endpoint -Pjava17
+$ mvn exec:java -pl edc/connector/health-connector -Pjava17
 ```
 
 ## 构建运行
@@ -22,14 +22,14 @@ $ mvn exec:java -pl edc/connector/health-endpoint -Pjava17
 ### 构建
 
 ```bash
-$ mvn clean package -pl edc/connector/health-endpoint -amd -Pjava17
+$ mvn clean package -pl edc/connector/health-connector -amd -Pjava17
 ```
 
 ### 运行
 
 ```bash
 # 默认端口为 8181
-$ java -jar edc/connector/basic-connector/target/health-endpoint.jar
+$ java -jar edc/connector/basic-connector/target/health-connector.jar
 ```
 
 ### 验证

@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>health-endpoint</artifactId>
+    <artifactId>health-connector</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

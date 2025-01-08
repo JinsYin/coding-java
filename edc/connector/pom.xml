@@ -23,7 +23,7 @@
     <modules>
         <module>basic-connector</module>
         <module>config-connector</module>
-        <module>health-endpoint</module>
+        <module>health-connector</module>
     </modules>
 
     <dependencyManagement>
