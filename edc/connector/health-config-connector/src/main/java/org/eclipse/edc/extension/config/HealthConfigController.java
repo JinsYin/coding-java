@@ -10,12 +10,12 @@ import org.eclipse.edc.spi.monitor.Monitor;
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class HealthController {
+public class HealthConfigController {
 
     private final Monitor monitor;
     private final String logPrefix;
 
-    public HealthController(Monitor monitor, String logPrefix) {
+    public HealthConfigController(Monitor monitor, String logPrefix) {
         this.monitor = monitor;
         this.logPrefix = logPrefix;
     }

@@ -16,8 +16,16 @@
     <dependencies>
         <!-- EDC Connector -->
         <dependency>
-            <groupId>cn.guruguru.coding</groupId>
-            <artifactId>basic-connector</artifactId>
+            <groupId>org.eclipse.edc</groupId>
+            <artifactId>boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.edc</groupId>
+            <artifactId>connector-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.edc</groupId>
+            <artifactId>http</artifactId>
         </dependency>
 
         <!-- Jakarta REST API -->

@@ -22,7 +22,7 @@
 
     <modules>
         <module>basic-connector</module>
-        <module>config-connector</module>
+        <module>health-config-connector</module>
         <module>health-connector</module>
     </modules>
 

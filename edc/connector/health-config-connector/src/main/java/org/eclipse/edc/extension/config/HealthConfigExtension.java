@@ -5,7 +5,7 @@ import org.eclipse.edc.spi.system.ServiceExtension;
 import org.eclipse.edc.spi.system.ServiceExtensionContext;
 import org.eclipse.edc.web.spi.WebService;
 
-public class HealthExtension implements ServiceExtension {
+public class HealthConfigExtension implements ServiceExtension {
 
     private static final String NAME = "Configurable Health Service";
     private static final String LOG_PREFIX = "edc.configuration.log.prefix";
@@ -21,6 +21,6 @@ public class HealthExtension implements ServiceExtension {
     @Override
     public void initialize(ServiceExtensionContext context) {
         String logPrefix = context.getSetting(LOG_PREFIX, "health");
-        webService.registerResource(new HealthController(context.getMonitor(), logPrefix));
+        webService.registerResource(new HealthConfigController(context.getMonitor(), logPrefix));
     }
 }
