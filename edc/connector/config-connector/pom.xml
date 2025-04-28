@@ -37,31 +37,4 @@
             <artifactId>jakarta.ws.rs-api</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Exec Maven Plugin -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>org.eclipse.edc.boot.system.runtime.BaseRuntime</mainClass>
-                    <!-- 该插件默认使用引入的依赖作为运行时类路径，不会将当前模块的编译输出目录加入类路径 -->
-                    <!-- 故手动指定当前模块的编译输出路径以将其加入类路径，但必须先执行编译 -->
-                    <arguments>
-                        <argument>-cp</argument>
-                        <argument>${project.build.outputDirectory}:${project.build.testOutputDirectory}</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
